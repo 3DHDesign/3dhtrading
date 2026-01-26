@@ -6,6 +6,7 @@ import {
   FiCheckCircle,
   FiTag,
 } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 
 type Product = {
   slug: string;
@@ -98,21 +99,29 @@ export default function ProductSummary({ p }: { p: Product }) {
 
       {/* Actions */}
       <div className="mt-7 grid gap-3 sm:grid-cols-2">
-        <a
-          href={waLink}
-          target="_blank"
-          rel="noreferrer"
-          className="
-            inline-flex items-center justify-center gap-2
-            rounded-2xl bg-[var(--primary)] px-6 py-3.5
-            font-semibold text-white
-            shadow-[0_10px_24px_rgba(236,0,140,0.25)]
-            hover:opacity-95 active:scale-[0.99] transition
-          "
-        >
-          <FiMessageCircle className="text-lg" />
-          Buy Now (WhatsApp)
-        </a>
+     
+      <a
+  href={waLink}
+  target="_blank"
+  rel="noreferrer"
+  className="
+    inline-flex items-center justify-center gap-2
+    rounded-2xl bg-[#25D366] px-6 py-3.5
+    font-semibold text-white
+    shadow-[0_10px_24px_rgba(37,211,102,0.35)]
+    hover:bg-[#1EBE5D]
+    active:scale-[0.99]
+    transition
+  "
+  aria-label="Buy now on WhatsApp"
+  title="Buy now on WhatsApp"
+>
+  <FaWhatsapp className="text-xl" />
+  <span>Buy Now</span>
+</a>
+
+
+
 
         <a
           href={`tel:${phone}`}
@@ -141,144 +150,7 @@ export default function ProductSummary({ p }: { p: Product }) {
       </div>
 
       {/* Quick order details */}
-      <div className="mt-6 rounded-2xl border border-[var(--border)] bg-gradient-to-b from-white to-[var(--bg)] p-5">
-        <div className="flex items-center justify-between gap-3">
-          <div>
-            <div className="font-bold text-[var(--dark)]">Need help choosing?</div>
-            <div className="mt-1 text-sm text-[var(--muted)]">
-              Share your crop / area / usage — we’ll recommend the correct model.
-            </div>
-          </div>
-
-          {/* Qty */}
-          <div className="shrink-0">
-            <div className="text-xs font-semibold text-[var(--muted)] mb-2 text-right">
-              Quantity
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setQty((q) => Math.max(1, q - 1))}
-                className="h-10 w-10 rounded-xl border border-[var(--border)] bg-white hover:bg-black/5 transition"
-                aria-label="Decrease quantity"
-              >
-                −
-              </button>
-
-              <div className="h-10 min-w-12 rounded-xl border border-[var(--border)] bg-white grid place-items-center font-semibold text-[var(--dark)]">
-                {qty}
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setQty((q) => q + 1)}
-                className="h-10 w-10 rounded-xl border border-[var(--border)] bg-white hover:bg-black/5 transition"
-                aria-label="Increase quantity"
-              >
-                +
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-5 grid gap-3 md:grid-cols-3">
-          {/* Branch */}
-          <div>
-            <label className="text-xs font-semibold text-[var(--muted)]">
-              Preferred branch
-            </label>
-            <select
-              value={delivery}
-              onChange={(e) =>
-                setDelivery(e.target.value as "Colombo" | "Kurunegala" | "Other")
-              }
-              className="
-                mt-2 w-full rounded-xl border border-[var(--border)]
-                bg-white px-4 py-3 text-sm text-[var(--dark)]
-                outline-none focus:border-[var(--primary)]
-                focus:ring-4 focus:ring-[var(--primary)]/10
-              "
-            >
-              <option value="Colombo">Colombo</option>
-              <option value="Kurunegala">Kurunegala</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-
-          {/* District */}
-          <div>
-            <label className="text-xs font-semibold text-[var(--muted)]">
-              District / Area
-            </label>
-            <input
-              value={district}
-              onChange={(e) => setDistrict(e.target.value)}
-              placeholder="Eg: Kurunegala, Dambulla..."
-              className="
-                mt-2 w-full rounded-xl border border-[var(--border)]
-                bg-white px-4 py-3 text-sm text-[var(--dark)]
-                placeholder:text-black/35
-                outline-none focus:border-[var(--primary)]
-                focus:ring-4 focus:ring-[var(--primary)]/10
-              "
-            />
-          </div>
-
-          {/* Use case */}
-          <div>
-            <label className="text-xs font-semibold text-[var(--muted)]">
-              Use case
-            </label>
-            <input
-              value={useCase}
-              onChange={(e) => setUseCase(e.target.value)}
-              placeholder="Eg: Paddy, vegetables, plantation..."
-              className="
-                mt-2 w-full rounded-xl border border-[var(--border)]
-                bg-white px-4 py-3 text-sm text-[var(--dark)]
-                placeholder:text-black/35
-                outline-none focus:border-[var(--primary)]
-                focus:ring-4 focus:ring-[var(--primary)]/10
-              "
-            />
-          </div>
-        </div>
-
-        {/* Mobile-friendly quick send */}
-        <div className="mt-4 flex flex-col sm:flex-row gap-3">
-          <a
-            href={waLink}
-            target="_blank"
-            rel="noreferrer"
-            className="
-              inline-flex items-center justify-center gap-2
-              rounded-2xl bg-[var(--dark)] px-5 py-3
-              font-semibold text-white
-              hover:opacity-95 transition
-            "
-          >
-            <FiMessageCircle />
-            Send Details on WhatsApp
-          </a>
-
-          <a
-            href="/contact"
-            className="
-              inline-flex items-center justify-center
-              rounded-2xl border border-[var(--border)]
-              bg-white px-5 py-3 font-semibold text-[var(--dark)]
-              hover:bg-black/5 transition
-            "
-          >
-            Request Quote Form
-          </a>
-        </div>
-
-        {/* Preview only on desktop (avoid clutter) */}
-        <div className="mt-4 hidden md:block rounded-xl border border-[var(--border)] bg-white p-3 text-xs text-[var(--muted)] whitespace-pre-line">
-          {waMessage}
-        </div>
-      </div>
+    
     </div>
   );
 }

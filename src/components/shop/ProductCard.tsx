@@ -2,12 +2,21 @@ import { Link } from "react-router-dom";
 import type { Product } from "../../data/products";
 
 export default function ProductCard({ p }: { p: Product }) {
+  const whatsappNumber = "94777680683";
+
+  const whatsappMessage = encodeURIComponent(
+    `Hi, I’m interested in ${p.name}. Can you please share the price and where I can buy it?`
+  );
+
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
   return (
     <div className="group rounded-[20px] border border-[var(--border)] bg-white overflow-hidden hover:shadow-sm transition">
       <Link to={`/shop/${p.slug}`} className="block">
         <div className="relative bg-[var(--bg)] p-5">
           {/* subtle corner accent */}
           <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[var(--primary)]/10" />
+
           <img
             src={p.images[0]}
             alt={p.name}
@@ -52,11 +61,16 @@ export default function ProductCard({ p }: { p: Product }) {
 
           {/* actions */}
           <div className="mt-5 grid grid-cols-2 gap-3">
-            <span className="btn-primary text-center py-3">View Details</span>
+            <span className="btn-primary text-center py-3">
+              View Details
+            </span>
+
             <a
-              href="/contact"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-[var(--radius)] border border-black/10 py-3 text-center font-semibold text-[var(--dark)] hover:bg-black/5 transition"
-              onClick={(e) => e.preventDefault()}
+              onClick={(e) => e.stopPropagation()}
             >
               Get Quote
             </a>

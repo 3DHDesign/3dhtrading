@@ -54,28 +54,29 @@ export default function RelatedProducts({ items }: { items: Product[] }) {
 
   return (
     <section className="bg-white">
-      <div className="container-base py-14">
-        <div className="flex items-end justify-between gap-6">
-          <div>
-            <p className="text-[var(--primary)] font-semibold tracking-widest text-xs uppercase">
-              More options
-            </p>
-            <h3 className="mt-2 text-2xl md:text-3xl font-extrabold text-[var(--dark)]">
-              Related Products
-            </h3>
-          </div>
-        </div>
-
-        <div className="relative mt-8">
-          <Slider {...settings}>
-            {items.map((p) => (
-              <div key={p.id} className="px-3">
-                <ProductCard p={p} />
-              </div>
-            ))}
-          </Slider>
-        </div>
+    <div className="container py-14">
+      {/* ✅ CENTERED HEADING */}
+      <div className="mb-10 text-center">
+        <p className="text-[var(--primary)] font-semibold tracking-widest text-xs uppercase">
+          More options
+        </p>
+        <h3 className="mt-2 text-2xl md:text-3xl font-extrabold text-[var(--dark)]">
+          Related Products
+        </h3>
       </div>
-    </section>
+  
+      {/* Slider stays same */}
+      <div className="relative mt-8">
+        <Slider {...settings}>
+          {items.map((p) => (
+            <div key={p.id} className="px-3">
+              <ProductCard p={p} />
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </div>
+  </section>
+  
   );
 }
