@@ -8,6 +8,7 @@ const NAV: NavItem[] = [
   { label: "HOME", to: "/" },
   { label: "ABOUT", to: "/about" },
   { label: "SHOP", to: "/shop" },
+  {label: "Dealer Network", to: "/dealers" },
   { label: "CONTACT US", to: "/contact" },
 ];
 
