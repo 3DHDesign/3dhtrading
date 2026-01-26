@@ -2,7 +2,7 @@ import { FiArrowRight, FiPhoneCall } from "react-icons/fi";
 
 export default function CTASection() {
   return (
-    <section className="bg-white">
+    <section className="">
       <div className="container-base pb-16 md:pb-20">
         <div className="relative overflow-hidden rounded-3xl border border-[var(--border)]">
           {/* Background image */}
@@ -77,7 +77,7 @@ export default function CTASection() {
 
                 <a
                   href="tel:0777680683"
-                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-[var(--radius)] bg-white text-[var(--dark)] px-5 py-3 font-semibold hover:bg-white/90 transition"
+                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-[var(--radius)] bg-[var(--primary)] text-white px-5 py-3 font-semibold hover:bg-white/90 transition"
                 >
                   Call Now <FiPhoneCall />
                 </a>

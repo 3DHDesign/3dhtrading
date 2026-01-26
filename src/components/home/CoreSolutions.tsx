@@ -73,7 +73,7 @@ import {
               return (
                 <div
                   key={s.title}
-                  className="group relative overflow-hidden rounded-2xl border border-[var(--border)] bg-white p-6 transition hover:-translate-y-1 hover:shadow-lg"
+                  className="group relative overflow-hidden rounded-2xl border border-[var(--border)]  p-6 transition hover:-translate-y-1 hover:shadow-lg"
                 >
                   {/* Accent bar */}
                   <div className="absolute inset-x-0 top-0 h-1 bg-[var(--primary)]/70" />

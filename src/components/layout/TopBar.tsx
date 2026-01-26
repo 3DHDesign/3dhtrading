@@ -1,10 +1,16 @@
 import { FiClock, FiPhoneCall, FiMapPin } from "react-icons/fi";
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 
-export default function TopBar() {
+export default function TopBar({ hidden }: { hidden: boolean }) {
   return (
-    <div className="w-full border-b border-[var(--border)] bg-white text-[13px]">
-      <div className="container-base flex items-center justify-between py-2">
+    <div
+      className={[
+        "fixed top-0 left-0 z-[60] w-full border-b border-[var(--border)]  text-[13px] transition-transform duration-200",
+        hidden ? "-translate-y-full" : "translate-y-0",
+      ].join(" ")}
+      style={{ height: 40 }} // matches TOPBAR_H
+    >
+      <div className="container-base flex h-full items-center justify-between py-2">
         {/* Left info */}
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-[var(--muted)]">
           <div className="flex items-center gap-2">
@@ -39,7 +45,6 @@ export default function TopBar() {
           >
             <FaFacebookF />
           </a>
-
           <a
             href="#"
             aria-label="Instagram"
@@ -47,7 +52,6 @@ export default function TopBar() {
           >
             <FaInstagram />
           </a>
-
           <a
             href="#"
             aria-label="LinkedIn"

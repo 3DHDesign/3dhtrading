@@ -4,7 +4,7 @@ import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="bg-white">
+    <footer className="">
       {/* small top accent so footer is visible on white pages */}
       <div className="h-[3px] w-full bg-[var(--primary)]" />
 

@@ -42,7 +42,7 @@ import {
   
   export default function WhyChooseUs() {
     return (
-      <section className="section bg-white">
+      <section className="section ">
         <div className="container-base">
           {/* Header */}
           <div className="mx-auto max-w-3xl text-center">
@@ -65,7 +65,7 @@ import {
               return (
                 <div
                   key={i}
-                  className="group rounded-2xl border border-[var(--border)] bg-white p-6 transition hover:-translate-y-1 hover:shadow-lg"
+                  className="group rounded-2xl border border-[var(--border)]  p-6 transition hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div className="flex items-center gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--primary)]/10 text-[var(--primary)] group-hover:bg-[var(--primary)] group-hover:text-white transition">

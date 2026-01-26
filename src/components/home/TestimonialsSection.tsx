@@ -67,7 +67,7 @@ function Arrow({
         "absolute top-1/2 -translate-y-1/2 z-10",
         dir === "left" ? "-left-4" : "-right-4",
         "hidden lg:flex h-10 w-10 items-center justify-center rounded-full",
-        "bg-white border border-[var(--border)] shadow-sm",
+        " border border-[var(--border)] shadow-sm",
         "hover:bg-[var(--bg)] transition",
       ].join(" ")}
     >
@@ -129,7 +129,7 @@ export default function TestimonialsSection() {
                 <div
                   className={[
                     "group relative h-full overflow-hidden rounded-3xl",
-                    "border border-[var(--border)] bg-white",
+                    "border border-[var(--border)] ",
                     "p-6",
                     "transition will-change-transform",
                     "hover:-translate-y-1 hover:shadow-lg",

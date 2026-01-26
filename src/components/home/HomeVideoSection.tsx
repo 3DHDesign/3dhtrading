@@ -5,12 +5,14 @@ type Props = {
   youtubeId?: string; // you can pass later
 };
 
-export default function HomeVideoSection({ youtubeId = "ysz5S6PUM-U" }: Props) {
+export default function HomeVideoSection({ youtubeId = "BTbW6nSHEUw" }: Props) {
   // default is a safe placeholder video id — replace anytime
-  const src = `https://www.youtube.com/embed/${youtubeId}?rel=0&modestbranding=1&controls=1`;
+  const src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1`;
 
+
+  
   return (
-    <section className="bg-white">
+    <section className="">
       <div className="container-wide py-14 md:py-18">
         <div className="grid items-center gap-10 lg:grid-cols-12">
           {/* LEFT: content */}
@@ -27,17 +29,21 @@ export default function HomeVideoSection({ youtubeId = "ysz5S6PUM-U" }: Props) {
             </h2>
 
             <p className="mt-4 text-[var(--muted)] leading-relaxed">
-              We supply reliable solutions and guide you to the right equipment based on
-              your actual usage — from sprayers and seeders to solar, pumps, and workshop tools.
+              We supply reliable solutions and guide you to the right equipment
+              based on your actual usage — from sprayers and seeders to solar,
+              pumps, and workshop tools.
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Link to="/shop" className="btn-primary inline-flex items-center gap-2">
+              <Link
+                to="/shop"
+                className="btn-primary inline-flex items-center gap-2"
+              >
                 Explore Products <FiArrowRight />
               </Link>
 
               <Link
-                to="/contact"
+                to="https://wa.me/94777680683?text=Hello%20I%20am%20interested%20in%20your%20products"
                 className="inline-flex items-center justify-center rounded-[var(--radius)] border border-black/10 px-5 py-3 font-semibold text-[var(--dark)] hover:bg-black/5 transition"
               >
                 Get a Quote
@@ -88,14 +94,10 @@ export default function HomeVideoSection({ youtubeId = "ysz5S6PUM-U" }: Props) {
               </div>
 
               {/* bottom note */}
-              <div className="flex items-center justify-between gap-3 px-5 py-4 text-xs md:text-sm text-[var(--muted)]">
-                <span>Replace the YouTube video anytime (just change the ID).</span>
-                <span className="hidden md:inline">HD • Mobile-friendly</span>
-              </div>
             </div>
 
             {/* small trust strip */}
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <div className="mt-4 hidden sm:grid gap-3 sm:grid-cols-3">
               {[
                 { k: "Fast guidance", v: "Help choosing models" },
                 { k: "Reliable supply", v: "Stocks & ordering" },

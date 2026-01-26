@@ -9,9 +9,10 @@ export default function Home() {
   return (
     <>
       <HeroSlider />
+      <FeaturedProductsShowcase />
       <WhyChooseUs />
       <HomeVideoSection/>
-      <FeaturedProductsShowcase />
+
       <CTASection />
       <TestimonialsSection />
     </>
