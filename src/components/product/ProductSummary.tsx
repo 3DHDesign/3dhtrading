@@ -1,8 +1,7 @@
 // src/components/product/ProductSummary.tsx
 import { useMemo, useState } from "react";
 import {
-  FiPhoneCall,
-  FiMessageCircle,
+  FiPhoneCall, 
   FiCheckCircle,
   FiTag,
 } from "react-icons/fi";
@@ -19,10 +18,10 @@ type Product = {
 };
 
 export default function ProductSummary({ p }: { p: Product }) {
-  const [qty, setQty] = useState(1);
-  const [useCase, setUseCase] = useState("");
-  const [district, setDistrict] = useState("");
-  const [delivery, setDelivery] = useState<"Colombo" | "Kurunegala" | "Other">(
+  const [qty,  ] = useState(1);
+  const [useCase,  ] = useState("");
+  const [district,  ] = useState("");
+  const [delivery,  ] = useState<"Colombo" | "Kurunegala" | "Other">(
     "Colombo"
   );
 

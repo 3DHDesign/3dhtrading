@@ -58,7 +58,7 @@ export default function FeaturedProductsShowcase() {
      MOBILE AUTO SLIDER (4s)
   ------------------------- */
   const mobileRef = useRef<HTMLDivElement | null>(null);
-  const [mobileIndex, setMobileIndex] = useState(0);
+  const [ , setMobileIndex] = useState(0);
 
   useEffect(() => {
     const container = mobileRef.current;
