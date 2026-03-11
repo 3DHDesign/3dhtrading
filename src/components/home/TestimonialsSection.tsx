@@ -1,4 +1,5 @@
 import type React from "react";
+import { useState, useEffect } from "react";
 import SlickImport from "react-slick";
 import { FiChevronLeft, FiChevronRight, FiMessageSquare } from "react-icons/fi";
 
@@ -52,13 +53,14 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-function Arrow({
-  dir,
-  onClick,
-}: {
-  dir: "left" | "right";
-  onClick?: () => void;
-}) {
+function getSlidesToShow(width: number) {
+  if (width < 768) return 1;
+  if (width < 1024) return 2;
+  if (width < 1280) return 3;
+  return 4;
+}
+
+function Arrow({ dir, onClick }: { dir: "left" | "right"; onClick?: () => void }) {
   return (
     <button
       onClick={onClick}
@@ -67,7 +69,7 @@ function Arrow({
         "absolute top-1/2 -translate-y-1/2 z-10",
         dir === "left" ? "-left-4" : "-right-4",
         "hidden lg:flex h-10 w-10 items-center justify-center rounded-full",
-        " border border-[var(--border)] shadow-sm",
+        "border border-[var(--border)] shadow-sm",
         "hover:bg-[var(--bg)] transition",
       ].join(" ")}
     >
@@ -77,23 +79,33 @@ function Arrow({
 }
 
 export default function TestimonialsSection() {
+  const [slidesToShow, setSlidesToShow] = useState(() =>
+    typeof window !== "undefined" ? getSlidesToShow(window.innerWidth) : 4
+  );
+
+  useEffect(() => {
+    const handleResize = () => setSlidesToShow(getSlidesToShow(window.innerWidth));
+    window.addEventListener("resize", handleResize);
+    // run once on mount
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = slidesToShow === 1;
+
   const settings = {
     dots: true,
-    arrows: true,
+    arrows: !isMobile,
     infinite: true,
     speed: 600,
-    slidesToShow: 4,
+    slidesToShow,
     slidesToScroll: 1,
+    initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 4500,
     pauseOnHover: true,
     nextArrow: <Arrow dir="right" />,
     prevArrow: <Arrow dir="left" />,
-    responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 3 } },
-      { breakpoint: 1024, settings: { slidesToShow: 2 } },
-      { breakpoint: 640, settings: { slidesToShow: 1, arrows: false } },
-    ],
     appendDots: (dots: React.ReactNode) => (
       <div className="mt-6">
         <ul className="m-0 flex justify-center gap-2">{dots}</ul>
@@ -102,7 +114,7 @@ export default function TestimonialsSection() {
     customPaging: () => (
       <div className="h-2 w-2 rounded-full bg-black/20 hover:bg-black/40 transition" />
     ),
-  } as const;
+  };
 
   return (
     <section className="bg-[var(--bg)]">
@@ -125,40 +137,29 @@ export default function TestimonialsSection() {
           <Slider {...settings}>
             {TESTIMONIALS.map((t, i) => (
               <div key={i} className="px-3">
-                {/* Card */}
                 <div
                   className={[
                     "group relative h-full overflow-hidden rounded-3xl",
-                    "border border-[var(--border)] ",
+                    "border border-[var(--border)]",
                     "p-6",
                     "transition will-change-transform",
                     "hover:-translate-y-1 hover:shadow-lg",
                   ].join(" ")}
                 >
-                  {/* top accent */}
                   <div className="absolute inset-x-0 top-0 h-1 bg-[var(--primary)]/70" />
-
-                  {/* subtle watermark */}
                   <FiMessageSquare
                     className="absolute -right-3 -top-3 text-[var(--primary)]/10"
                     size={70}
                   />
-
-                  {/* text */}
                   <p className="text-sm text-[var(--text)] leading-relaxed line-clamp-4">
-                    “{t.text}”
+                    "{t.text}"
                   </p>
-
-                  {/* footer */}
                   <div className="mt-6">
-                    <div className="font-semibold text-[var(--dark)]">
-                      {t.name}
-                    </div>
+                    <div className="font-semibold text-[var(--dark)]">{t.name}</div>
                     <div className="text-xs text-[var(--muted)]">
                       {t.role}
                       {t.location ? ` • ${t.location}` : ""}
                     </div>
-
                     <div className="mt-4 h-[2px] w-12 bg-[var(--primary)]/60 rounded-full" />
                   </div>
                 </div>
@@ -166,7 +167,6 @@ export default function TestimonialsSection() {
             ))}
           </Slider>
 
-          {/* dots fix */}
           <style>{`
             .slick-dots li { margin: 0 !important; }
             .slick-dots li button:before { display: none !important; }

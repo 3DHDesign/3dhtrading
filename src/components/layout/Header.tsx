@@ -8,7 +8,7 @@ const NAV: NavItem[] = [
   { label: "HOME", to: "/" },
   { label: "ABOUT", to: "/about" },
   { label: "SHOP", to: "/shop" },
-  {label: "Dealer Network", to: "/dealers" },
+  { label: "Dealer Network", to: "/dealers" },
   { label: "CONTACT US", to: "/contact" },
 ];
 
@@ -38,13 +38,13 @@ export default function Header({ topOffset = 0 }: { topOffset?: number }) {
         ].join(" ")}
       >
         {/* Logo area */}
-        <div className="flex items-center gap-3">
+        <NavLink to="/" className="flex items-center gap-3">
           <img
             src="/images/logo.png"
             alt="3DH Trading"
             className="h-12 w-auto object-contain"
           />
-        </div>
+        </NavLink>
 
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-10 md:flex">
