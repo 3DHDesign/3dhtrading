@@ -11,24 +11,26 @@ export default function ProductCard({ p }: { p: Product }) {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (
-    <div className="group rounded-[20px] border border-[var(--border)] bg-white overflow-hidden hover:shadow-sm transition">
-      <Link to={`/shop/${p.slug}`} className="block">
-        <div className="relative bg-[var(--bg)] p-5">
+    <div className="group rounded-[20px] border border-[var(--border)] bg-white overflow-hidden hover:shadow-sm transition h-full flex flex-col">
+      <Link to={`/shop/${p.slug}`} className="block flex-1">
+        {/* Container with fixed height and centering */}
+        <div className="relative bg-[var(--bg)] h-[220px] flex items-center justify-center p-6 overflow-hidden">
           {/* subtle corner accent */}
           <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[var(--primary)]/10" />
 
           <img
             src={p.images[0]}
             alt={p.name}
-            className="mx-auto h-[190px] w-auto object-contain drop-shadow-[0_18px_24px_rgba(0,0,0,0.10)] group-hover:scale-[1.02] transition"
+            /* UPDATED: Added p-2 to give the larger pumps more breathing room so they look smaller */
+            className="max-h-full w-auto object-contain p-2 drop-shadow-[0_18px_24px_rgba(0,0,0,0.10)] group-hover:scale-[1.05] transition duration-300"
           />
         </div>
 
-        <div className="p-5">
+        <div className="p-5 flex flex-col flex-1">
           <div className="flex items-start justify-between gap-3">
-            <div>
-              <h3 className="font-bold text-[var(--dark)]">{p.name}</h3>
-              <p className="mt-1 text-sm text-[var(--muted)] line-clamp-2">
+            <div className="flex-1">
+              <h3 className="font-bold text-[var(--dark)] line-clamp-1">{p.name}</h3>
+              <p className="mt-1 text-sm text-[var(--muted)] line-clamp-2 min-h-[40px]">
                 {p.short}
               </p>
             </div>
@@ -48,7 +50,7 @@ export default function ProductCard({ p }: { p: Product }) {
           </div>
 
           {/* chips */}
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-2 min-h-[26px]">
             {(p.tags ?? []).slice(0, 2).map((t) => (
               <span
                 key={t}
@@ -60,8 +62,8 @@ export default function ProductCard({ p }: { p: Product }) {
           </div>
 
           {/* actions */}
-          <div className="mt-5 grid grid-cols-2 gap-3">
-            <span className="btn-primary text-center py-3">
+          <div className="mt-auto pt-5 grid grid-cols-2 gap-3">
+            <span className="btn-primary text-center py-3 text-sm">
               View Details
             </span>
 
@@ -69,7 +71,7 @@ export default function ProductCard({ p }: { p: Product }) {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-[var(--radius)] border border-black/10 py-3 text-center font-semibold text-[var(--dark)] hover:bg-black/5 transition"
+              className="rounded-[var(--radius)] border border-black/10 py-3 text-center font-semibold text-[var(--dark)] text-sm hover:bg-black/5 transition"
               onClick={(e) => e.stopPropagation()}
             >
               Get Quote

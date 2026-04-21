@@ -1,4 +1,3 @@
-// src/components/product/ProductSummary.tsx
 import { useMemo, useState } from "react";
 import {
   FiPhoneCall, 
@@ -7,28 +6,27 @@ import {
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 
+// UPDATED TYPE: Added specs to the Product definition
 type Product = {
   slug: string;
   name: string;
   category: string;
-  shortCategory?: string; // optional label if you have it
-  tagline?: string; // optional short subtitle
-  highlights?: string[]; // optional bullet points
-  sku?: string; // optional
+  shortCategory?: string; 
+  tagline?: string; 
+  highlights?: string[]; 
+  sku?: string;
+  specs?: { key: string; value: string }[]; // New field for Chuff Cutter data
 };
 
 export default function ProductSummary({ p }: { p: Product }) {
-  const [qty,  ] = useState(1);
-  const [useCase,  ] = useState("");
-  const [district,  ] = useState("");
-  const [delivery,  ] = useState<"Colombo" | "Kurunegala" | "Other">(
+  const [qty] = useState(1);
+  const [useCase] = useState("");
+  const [district] = useState("");
+  const [delivery] = useState<"Colombo" | "Kurunegala" | "Other">(
     "Colombo"
   );
 
   const phone = "0777680683";
-
-  // If you want different numbers per branch later:
-  // const branchPhones = { Colombo: "0777680683", Kurunegala: "07xxxxxxxx" };
 
   const waMessage = useMemo(() => {
     const lines = [
@@ -48,8 +46,6 @@ export default function ProductSummary({ p }: { p: Product }) {
   }, [p.name, p.category, qty, useCase, district, delivery]);
 
   const waLink = useMemo(() => {
-    // WhatsApp wa.me works best with country code. Sri Lanka = 94 (remove leading 0)
-    // 0777680683 -> 94777680683
     const waNumber = `94${phone.replace(/^0/, "")}`;
     return `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
   }, [waMessage, phone]);
@@ -98,29 +94,23 @@ export default function ProductSummary({ p }: { p: Product }) {
 
       {/* Actions */}
       <div className="mt-7 grid gap-3 sm:grid-cols-2">
-     
-      <a
-  href={waLink}
-  target="_blank"
-  rel="noreferrer"
-  className="
-    inline-flex items-center justify-center gap-2
-    rounded-2xl bg-[#25D366] px-6 py-3.5
-    font-semibold text-white
-    shadow-[0_10px_24px_rgba(37,211,102,0.35)]
-    hover:bg-[#1EBE5D]
-    active:scale-[0.99]
-    transition
-  "
-  aria-label="Buy now on WhatsApp"
-  title="Buy now on WhatsApp"
->
-  <FaWhatsapp className="text-xl" />
-  <span>Buy Now</span>
-</a>
-
-
-
+        <a
+          href={waLink}
+          target="_blank"
+          rel="noreferrer"
+          className="
+            inline-flex items-center justify-center gap-2
+            rounded-2xl bg-[#25D366] px-6 py-3.5
+            font-semibold text-white
+            shadow-[0_10px_24px_rgba(37,211,102,0.35)]
+            hover:bg-[#1EBE5D]
+            active:scale-[0.99]
+            transition
+          "
+        >
+          <FaWhatsapp className="text-xl" />
+          <span>Buy Now</span>
+        </a>
 
         <a
           href={`tel:${phone}`}
@@ -148,8 +138,35 @@ export default function ProductSummary({ p }: { p: Product }) {
         </span>
       </div>
 
-      {/* Quick order details */}
-    
+      {/* STEP 2: Specifications Table (Added below the Trust Row) */}
+      {p.specs && p.specs.length > 0 && (
+        <div className="mt-10 pt-8 border-t border-[var(--border)]">
+          <div className="flex gap-6 border-b border-[var(--border)] mb-6">
+            <button className="pb-3 text-sm font-bold border-b-2 border-[var(--primary)] text-[var(--dark)]">
+              Specifications
+            </button>
+            <button className="pb-3 text-sm font-medium text-[var(--muted)] hover:text-[var(--dark)] transition">
+              Support
+            </button>
+          </div>
+
+          <div className="space-y-1">
+            {p.specs.map((spec) => (
+              <div 
+                key={spec.key} 
+                className="flex justify-between items-center py-3.5 border-b border-black/5 last:border-0"
+              >
+                <span className="text-sm font-semibold text-[var(--dark)]">
+                  {spec.key}
+                </span>
+                <span className="text-sm text-[var(--muted)] text-right">
+                  {spec.value}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
