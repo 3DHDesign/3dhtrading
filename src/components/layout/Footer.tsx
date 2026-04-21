@@ -74,6 +74,16 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/dealers" className="hover:text-[var(--dark)] transition">
+                    Dealer Network
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/industrial-validation" className="hover:text-[var(--dark)] transition">
+                    Industrial Validation
+                  </Link>
+                </li>
+                <li>
                   <Link to="/contact" className="hover:text-[var(--dark)] transition">
                     Contact
                   </Link>

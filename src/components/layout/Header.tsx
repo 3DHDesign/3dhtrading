@@ -9,6 +9,7 @@ const NAV: NavItem[] = [
   { label: "ABOUT", to: "/about" },
   { label: "SHOP", to: "/shop" },
   { label: "Dealer Network", to: "/dealers" },
+  { label: "Agri Stories", to: "/agri-stories" },
   { label: "CONTACT US", to: "/contact" },
 ];
 

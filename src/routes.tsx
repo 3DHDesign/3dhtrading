@@ -6,6 +6,7 @@ import Shop from "./pages/Shop";
 import ProductDetail from "./pages/ProductDetail";
 import Contact from "./pages/Contact";
 import DealerNetwork from "./pages/DealerNetwork";
+import AgriStories from "./pages/AgriStories"; 
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
       { path: "/shop", element: <Shop /> },
       { path: "/shop/:slug", element: <ProductDetail /> },
       { path: "/dealers", element: <DealerNetwork /> },
+      { path: "/agri-stories", element: <AgriStories /> }, // MUST match Header
       { path: "/contact", element: <Contact /> },
     ],
   },
